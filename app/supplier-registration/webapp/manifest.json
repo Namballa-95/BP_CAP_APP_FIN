@@ -1,0 +1,153 @@
+{
+  "_version": "1.86.0",
+
+  "sap.app": {
+    "id": "supplier.registration.supplierregistration",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+
+    "resources": "resources.json",
+
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.31.1",
+      "toolsId": "0e56853d-a2db-4e04-b2b6-db9b9fa6d3af"
+    },
+
+    "dataSources": {
+      "mainService": {
+        "uri": "/bp/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+
+  "sap.ui": {
+    "technology": "UI5",
+
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+
+  "sap.ui5": {
+    "flexEnabled": true,
+
+    "dependencies": {
+      "minUI5Version": "1.151.0",
+
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+
+        "settings": {
+          "bundleName": "supplier.registration.supplierregistration.i18n.i18n"
+        }
+      },
+
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+
+    "routing": {
+
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "supplier.registration.supplierregistration.view",
+        "async": true,
+        "viewPath": "supplier.registration.supplierregistration.view"
+      },
+
+      "routes": [
+
+        {
+          "name": "RouteSupplierRegistration",
+          "pattern": "",
+          "target": "TargetSupplierRegistration"
+        },
+
+        {
+          "name": "RouteSuppliers",
+          "pattern": "suppliers",
+          "target": "TargetSuppliers"
+        }
+
+      ],
+
+      "targets": {
+
+        "TargetSupplierRegistration": {
+          "id": "SupplierRegistration",
+          "name": "SupplierRegistration"
+        },
+
+        "TargetSuppliers": {
+          "id": "Suppliers",
+          "name": "Suppliers"
+        }
+
+      }
+    },
+
+    "rootView": {
+      "viewName": "supplier.registration.supplierregistration.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

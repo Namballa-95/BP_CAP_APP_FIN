@@ -1,0 +1,122 @@
+_schema-version: 3.3.0
+
+ID: bp_capm_app
+version: 1.0.0
+description: "Supplier Business Partner CAP Application"
+
+parameters:
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+
+modules:
+
+  # =========================================================
+  # HANA DB DEPLOYER
+  # =========================================================
+
+  - name: bp_capm_app-db-deployer
+    type: hdb
+    path: gen/db
+
+    requires:
+      - name: bp_capm_app-db
+
+
+  # =========================================================
+  # CAP SERVICE
+  # =========================================================
+
+  - name: bp_capm_app-srv
+    type: nodejs
+    path: gen/srv
+
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+
+    build-parameters:
+      builder: npm-ci
+
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+
+    requires:
+      - name: bp_capm_app-db
+      - name: bp_capm_app-xsuaa
+
+
+  # =========================================================
+  # APPLICATION ROUTER
+  # =========================================================
+
+  - name: bp_capm_app
+    type: approuter.nodejs
+    path: app/router
+
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+
+    build-parameters:
+      builder: custom
+      commands:
+        - npm ci
+        - rm -rf webapp
+        - mkdir -p webapp
+        - cp -r ../supplier-registration/webapp/. webapp/
+
+    requires:
+
+      # CAP SERVICE DESTINATION
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          forwardAuthToken: true
+
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
+
+
+resources:
+
+  # =========================================================
+  # HDI CONTAINER
+  # =========================================================
+
+  - name: bp_capm_app-db
+    type: org.cloudfoundry.managed-service
+
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+
+      config:
+        database_id: 2a01f466-9cfe-4547-bb0e-df8fe7115e56
+
+
+  # =========================================================
+  # XSUAA
+  # =========================================================
+
+  - name: bp_capm_app-xsuaa
+    type: org.cloudfoundry.managed-service
+
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+

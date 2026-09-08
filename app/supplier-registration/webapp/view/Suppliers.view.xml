@@ -1,0 +1,299 @@
+<mvc:View
+    controllerName="supplier.registration.supplierregistration.controller.Suppliers"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Page
+        id="suppliersPage"
+        showHeader="false"
+        class="supplierRegistrationPage">
+
+        <content>
+
+            <VBox
+                class="supplierPageContainer"
+                width="100%">
+
+                <!-- PAGE HEADER -->
+
+                <HBox
+                    class="suppliersPageTopBar"
+                    width="100%"
+                    alignItems="Center">
+
+                    <!-- BACK BUTTON -->
+
+                    <Button
+                        icon="sap-icon://nav-back"
+                        type="Transparent"
+                        tooltip="Back to Registration"
+                        press=".onToggleNavigation"
+                        class="navigationMenuButton" />
+
+                    <VBox
+                        class="suppliersPageHeader">
+
+                        <Title
+                            text="Suppliers"
+                            level="H1"
+                            class="registrationPageTitle" />
+
+                        <Text
+                            text="View and manage registered suppliers"
+                            class="registrationPageSubtitle" />
+
+                    </VBox>
+
+                </HBox>
+
+
+                <!-- =====================================================
+                     FILTER CONTAINER
+                     ===================================================== -->
+
+                <VBox
+                    class="supplierFilterCard"
+                    width="100%">
+
+                    <!-- FILTER HEADER -->
+
+                    <HBox
+                        class="supplierFilterHeader"
+                        alignItems="Center">
+
+                        <core:Icon
+                            src="sap-icon://filter"
+                            size="1.2rem"
+                            class="supplierFilterIcon" />
+
+                        <VBox>
+
+                            <Title
+                                text="Filter Suppliers"
+                                level="H2"
+                                class="supplierFilterTitle" />
+
+                            <Text
+                                text="Search suppliers using the fields below"
+                                class="supplierFilterDescription" />
+
+                        </VBox>
+
+                    </HBox>
+
+
+                    <!-- FILTER FIELDS -->
+
+                    <HBox
+                        class="supplierFilterForm"
+                        width="100%"
+                        alignItems="End">
+
+                        <!-- SUPPLIER ID -->
+
+                        <VBox
+                            class="supplierFilterField">
+
+                            <Label
+                                text="Supplier ID"
+                                class="registrationLabel" />
+
+                            <Input
+                                id="filterSupplierId"
+                                placeholder="Enter Supplier ID"
+                                width="100%"
+                                class="registrationInput" />
+
+                        </VBox>
+
+
+                        <!-- SUPPLIER NAME -->
+
+                        <VBox
+                            class="supplierFilterField">
+
+                            <Label
+                                text="Supplier Name"
+                                class="registrationLabel" />
+
+                            <Input
+                                id="filterSupplierName"
+                                placeholder="Enter Supplier Name"
+                                width="100%"
+                                class="registrationInput" />
+
+                        </VBox>
+
+
+                        <!-- SUPPLIER EMAIL -->
+
+                        <VBox
+                            class="supplierFilterField">
+
+                            <Label
+                                text="Supplier Email"
+                                class="registrationLabel" />
+
+                            <Input
+                                id="filterSupplierEmail"
+                                type="Email"
+                                placeholder="Enter Supplier Email"
+                                width="100%"
+                                class="registrationInput" />
+
+                        </VBox>
+
+
+                        <!-- ACTION BUTTONS -->
+
+                        <HBox
+                            class="supplierFilterActions"
+                            alignItems="Center">
+
+                            <Button
+                                text="Search"
+                                icon="sap-icon://search"
+                                type="Emphasized"
+                                press=".onSearchSuppliers"
+                                class="registerSupplierButton" />
+
+                            <Button
+                                text="Clear"
+                                icon="sap-icon://clear-filter"
+                                type="Transparent"
+                                press=".onClearFilters"
+                                class="clearFilterButton" />
+
+                        </HBox>
+
+                    </HBox>
+
+                </VBox>
+
+
+                <!-- =====================================================
+                     REGISTERED SUPPLIERS
+                     ===================================================== -->
+
+                <VBox
+                    class="suppliersSection"
+                    width="100%">
+
+                    <HBox
+                        class="suppliersSectionHeader"
+                        alignItems="Center"
+                        justifyContent="SpaceBetween">
+
+                        <VBox>
+
+                            <Title
+                                text="Registered Suppliers"
+                                level="H2"
+                                class="suppliersTitle" />
+
+                            <Text
+                                text="All suppliers registered in the system"
+                                class="suppliersSubtitle" />
+
+                        </VBox>
+
+
+                        <!-- SUPPLIER COUNT -->
+
+                        <HBox
+                            class="supplierCountBadge"
+                            alignItems="Center">
+
+                            <core:Icon
+                                src="sap-icon://group"
+                                class="supplierCountIcon" />
+
+                            <Text
+                                id="supplierCountText"
+                                text="Suppliers"
+                                class="supplierCountText" />
+
+                        </HBox>
+
+                    </HBox>
+
+
+                    <!-- =================================================
+                         SUPPLIER TABLE
+                         ================================================= -->
+
+                    <VBox
+                        class="supplierTableCard"
+                        width="100%">
+
+                        <Table
+                            id="suppliersTable"
+                            items="{
+                                path: '/Suppliers'
+                            }"
+                            growing="true"
+                            growingThreshold="10"
+                            noDataText="No suppliers registered"
+                            class="supplierTable">
+
+                            <columns>
+
+                                <Column width="20%">
+                                    <Text
+                                        text="Supplier ID"
+                                        class="tableHeaderText" />
+                                </Column>
+
+                                <Column width="40%">
+                                    <Text
+                                        text="Supplier Name"
+                                        class="tableHeaderText" />
+                                </Column>
+
+                                <Column width="40%">
+                                    <Text
+                                        text="Supplier Email"
+                                        class="tableHeaderText" />
+                                </Column>
+
+                            </columns>
+
+
+                            <items>
+
+                                <ColumnListItem>
+
+                                    <cells>
+
+                                        <Text
+                                            text="{SupplierID}"
+                                            class="supplierIdText" />
+
+                                        <Text
+                                            text="{SupplierName}"
+                                            class="supplierNameText" />
+
+                                        <Text
+                                            text="{SupplierEmail}"
+                                            class="supplierEmailText" />
+
+                                    </cells>
+
+                                </ColumnListItem>
+
+                            </items>
+
+                        </Table>
+
+                    </VBox>
+
+                </VBox>
+
+            </VBox>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

@@ -1,0 +1,20 @@
+{
+    "welcomeFile": "/supplier-registration/index.html",
+
+    "authenticationMethod": "none",
+
+    "routes": [
+        {
+            "source": "^/supplier-registration/(.*)$",
+            "target": "$1",
+            "localDir": "./webapp",
+            "authenticationType": "none"
+        },
+        {
+            "source": "^/odata/(.*)$",
+            "target": "/odata/$1",
+            "destination": "srv-api",
+            "authenticationType": "none"
+        }
+    ]
+}

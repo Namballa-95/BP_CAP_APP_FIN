@@ -1,0 +1,1 @@
+using BPService as service from '../../srv/bp-service';

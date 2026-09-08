@@ -1,0 +1,17 @@
+{
+  "requires": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": {
+        "url": "db/supplier.db"
+      }
+    }
+  },
+  "[production]": {
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "bp_capm_app",
+  "version": "1.0.0",
+  "description": "Supplier Business Partner CAP Application",
+  "dependencies": {
+    "@cap-js/hana": "^3.0.2",
+    "@sap/cds": "^10.0.6",
+    "@sap/xssec": "^4.15.0"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3.0.2",
+    "@sap/cds-dk": "^10",
+    "cds-plugin-ui5": "^0.17.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-supplier-registration": "cds watch --open supplier.registration.supplierregistration/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "cds": {
+    "build": {
+      "target": "gen",
+      "tasks": [
+        {
+          "for": "nodejs"
+        },
+        {
+          "for": "hana"
+        }
+      ]
+    }
+  }
+}
