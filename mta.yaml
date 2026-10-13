@@ -76,6 +76,9 @@ modules:
 
     requires:
 
+      # XSUAA AUTHENTICATION
+      - name: bp_capm_app-xsuaa
+
       # CAP SERVICE DESTINATION
       - name: srv-api
         group: destinations
@@ -104,9 +107,6 @@ resources:
       service: hana
       service-plan: hdi-shared
 
-      config:
-        database_id: 2a01f466-9cfe-4547-bb0e-df8fe7115e56
-
 
   # =========================================================
   # XSUAA
@@ -119,4 +119,3 @@ resources:
       service: xsuaa
       service-plan: application
       path: ./xs-security.json
-

@@ -1,12 +1,15 @@
 {
   "xsappname": "bp-capm-app",
+
   "tenant-mode": "dedicated",
+
   "scopes": [
     {
       "name": "$XSAPPNAME.User",
       "description": "User access"
     }
   ],
+
   "role-templates": [
     {
       "name": "User",
@@ -15,5 +18,11 @@
         "$XSAPPNAME.User"
       ]
     }
-  ]
+  ],
+
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://315a9120trial-dev-bp-capm-app.cfapps.us10-001.hana.ondemand.com/**"
+    ]
+  }
 }

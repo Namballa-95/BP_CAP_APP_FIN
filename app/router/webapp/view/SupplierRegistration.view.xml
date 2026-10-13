@@ -1,5 +1,6 @@
 <mvc:View
     controllerName="supplier.registration.supplierregistration.controller.SupplierRegistration"
+    displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
@@ -11,26 +12,19 @@
 
         <content>
 
-            <!-- =====================================================
-                 APPLICATION LAYOUT
-                 ===================================================== -->
-
+            <!-- APPLICATION LAYOUT -->
             <HBox
                 id="supplierRegistrationLayout"
                 width="100%"
                 height="100%"
                 class="supplierRegistrationLayout">
 
-                <!-- =================================================
-                     NAVIGATION DRAWER
-                     ================================================= -->
-
+                <!-- NAVIGATION DRAWER -->
                 <VBox
                     id="navigationDrawer"
                     class="navigationDrawer">
 
                     <!-- DRAWER HEADER -->
-
                     <VBox
                         class="navigationDrawerHeader"
                         alignItems="Center">
@@ -54,13 +48,8 @@
 
                     </VBox>
 
-
                     <!-- NAVIGATION ITEMS -->
-
-                    <VBox
-                        class="navigationItems">
-
-                        <!-- REGISTER -->
+                    <VBox class="navigationItems">
 
                         <Button
                             id="registerNavigationItem"
@@ -70,8 +59,6 @@
                             width="100%"
                             press=".onNavigateToRegister"
                             class="navigationItem navigationItemSelected" />
-
-                        <!-- SUPPLIERS -->
 
                         <Button
                             id="suppliersNavigationItem"
@@ -84,32 +71,22 @@
 
                     </VBox>
 
-
                     <!-- DRAWER FOOTER -->
-
-                    <VBox
-                        class="navigationDrawerFooter">
-
+                    <VBox class="navigationDrawerFooter">
                         <Text
                             text="Supplier Management"
                             class="navigationFooterText" />
-
                     </VBox>
 
                 </VBox>
 
-
-                <!-- =================================================
-                     MAIN REGISTRATION CONTENT
-                     ================================================= -->
-
+                <!-- MAIN REGISTRATION CONTENT -->
                 <VBox
                     id="registrationMainContent"
                     width="100%"
                     class="registrationMainContent">
 
                     <!-- PAGE HEADER -->
-
                     <VBox
                         class="registrationHeader"
                         alignItems="Center">
@@ -137,11 +114,7 @@
 
                     </VBox>
 
-
-                    <!-- =================================================
-                         REGISTRATION FORM
-                         ================================================= -->
-
+                    <!-- REGISTRATION FORM -->
                     <VBox
                         class="registrationCard"
                         width="100%"
@@ -151,8 +124,7 @@
                             class="registrationCardHeader"
                             alignItems="Center">
 
-                            <VBox
-                                class="registrationCardHeaderText">
+                            <VBox class="registrationCardHeaderText">
 
                                 <Title
                                     text="Register New Supplier"
@@ -167,15 +139,12 @@
 
                         </HBox>
 
-
                         <!-- FORM FIELDS -->
-
                         <VBox
                             class="registrationForm"
                             width="100%">
 
                             <!-- SUPPLIER ID -->
-
                             <Label
                                 text="Supplier ID"
                                 labelFor="supplierIdInput"
@@ -187,9 +156,7 @@
                                 width="100%"
                                 class="registrationInput" />
 
-
                             <!-- SUPPLIER NAME -->
-
                             <Label
                                 text="Supplier Name"
                                 labelFor="supplierNameInput"
@@ -201,9 +168,7 @@
                                 width="100%"
                                 class="registrationInput" />
 
-
                             <!-- SUPPLIER EMAIL -->
-
                             <Label
                                 text="Supplier Email"
                                 labelFor="supplierEmailInput"
@@ -216,9 +181,7 @@
                                 width="100%"
                                 class="registrationInput" />
 
-
                             <!-- REGISTER BUTTON -->
-
                             <Button
                                 id="registerButton"
                                 text="Register Supplier"
@@ -232,11 +195,7 @@
 
                     </VBox>
 
-
-                    <!-- =================================================
-                         REGISTERED SUPPLIERS
-                         ================================================= -->
-
+                    <!-- REGISTERED SUPPLIERS -->
                     <VBox
                         class="suppliersSection"
                         width="100%">
@@ -259,9 +218,7 @@
 
                             </VBox>
 
-
-                            <!-- SUPPLIER COUNT -->
-
+                            <!-- SUPPLIER COUNT BADGE -->
                             <HBox
                                 class="supplierCountBadge"
                                 alignItems="Center">
@@ -278,11 +235,7 @@
 
                         </HBox>
 
-
-                        <!-- =================================================
-                             SUPPLIER TABLE
-                             ================================================= -->
-
+                        <!-- SUPPLIER TABLE -->
                         <VBox
                             class="supplierTableCard"
                             width="100%">
@@ -297,37 +250,36 @@
 
                                 <columns>
 
-                                    <Column width="20%">
-
+                                    <Column width="18%">
                                         <Text
                                             text="Supplier ID"
                                             class="tableHeaderText" />
-
                                     </Column>
 
-                                    <Column width="40%">
-
+                                    <Column width="37%">
                                         <Text
                                             text="Supplier Name"
                                             class="tableHeaderText" />
-
                                     </Column>
 
-                                    <Column width="40%">
-
+                                    <Column width="37%">
                                         <Text
                                             text="Supplier Email"
                                             class="tableHeaderText" />
+                                    </Column>
 
+                                    <!-- ACTIONS COLUMN -->
+                                    <Column
+                                        width="8%"
+                                        hAlign="Center">
+                                        <Text text="" />
                                     </Column>
 
                                 </columns>
 
-
                                 <items>
 
-                                    <ColumnListItem
-                                        class="supplierTableRow">
+                                    <ColumnListItem class="supplierTableRow">
 
                                         <cells>
 
@@ -342,6 +294,13 @@
                                             <Text
                                                 text="{SupplierEmail}"
                                                 class="supplierEmailText" />
+
+                                            <!-- THREE-DOT MENU -->
+                                            <Button
+                                                icon="sap-icon://overflow"
+                                                type="Transparent"
+                                                tooltip="Supplier actions"
+                                                press=".onSupplierActions" />
 
                                         </cells>
 

@@ -10,4 +10,6 @@ service BPService {
         SupplierEmail : String(150)
     ) returns Boolean;
 
+    function getMySupplier() returns String;
+
 }

@@ -1,20 +1,18 @@
 {
     "welcomeFile": "/supplier-registration/index.html",
-
-    "authenticationMethod": "none",
-
+    "authenticationMethod": "route",
     "routes": [
         {
             "source": "^/supplier-registration/(.*)$",
             "target": "$1",
             "localDir": "./webapp",
-            "authenticationType": "none"
-        },
+            "authenticationType": "xsuaa"
+        }, 
         {
-            "source": "^/odata/(.*)$",
-            "target": "/odata/$1",
+            "source": "^/bp/(.*)$",
+            "target": "/bp/$1",
             "destination": "srv-api",
-            "authenticationType": "none"
+            "authenticationType": "xsuaa"
         }
     ]
 }
